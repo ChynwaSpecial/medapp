@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Patient Dashboard</h3>
+                    <p class="text-muted">Welcome, {{ request.user.get_full_name }}!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Widgets -->
+        <div class="row">
+            <!-- Profile Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <span class="dash-widget-icon text-primary">
+                            <i class="fa fa-user-md"></i>
+                        </span>
+                        <div class="dash-widget-info">
+                            <h4><a href="{% url 'patient-profile' %}">My Profile</a></h4>
+                            <span>View & Edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <span class="dash-widget-icon text-success">
+                            <i class="fa fa-credit-card"></i>
+                        </span>
+                        <div class="dash-widget-info">
+                            <h4><a href="{% url 'patient-billing' %}">Billing</a></h4>
+                            <span>Invoices & Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Reports Card -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <span class="dash-widget-icon text-info">
+                            <i class="fa fa-file-text"></i>
+                        </span>
+                        <div class="dash-widget-info">
+                            <h4><a href="{% url 'patient-reports' %}">My Reports</a></h4>
+                            <span>View & Download</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments (Optional) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <span class="dash-widget-icon text-warning">
+                            <i class="fa fa-calendar-check-o"></i>
+                        </span>
+                        <div class="dash-widget-info">
+                            <h4><a href="{% url 'appointment-list' %}">Appointments</a></h4>
+                            <span>Upcoming & Past</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support (Optional) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <span class="dash-widget-icon text-danger">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <div class="dash-widget-info">
+                            <h4><a href="{% url 'contact' %}">Contact Support</a></h4>
+                            <span>Ask a Question</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

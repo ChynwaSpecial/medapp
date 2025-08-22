@@ -1,0 +1,28 @@
+{% comment %} {% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="page-header">
+    <h3 class="page-title">{{ title }}</h3>
+  </div>
+
+  <div class="row">
+    {% for report in reports %}
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ report.title }}</h5>
+            <p><strong>Doctor:</strong> {{ report.doctor.get_full_name }}</p>
+            <p><strong>Patient:</strong> {{ report.patient.get_full_name }}</p>
+            <p><strong>Date:</strong> {{ report.created_at|date:"d M Y" }}</p>
+            <p>{{ report.description|truncatewords:30 }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No reports available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} {% endcomment %}

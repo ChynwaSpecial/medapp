@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <h4 class="page-title">My Profile</h4>
+
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</li>
+            <li class="list-group-item"><strong>Gender:</strong> {{ profile.gender }}</li>
+            <li class="list-group-item"><strong>Phone:</strong> {{ profile.phone }}</li>
+            <li class="list-group-item"><strong>Blood Group:</strong> {{ profile.blood_group }}</li>
+            <li class="list-group-item"><strong>Allergies:</strong> {{ profile.allergies }}</li>
+            <li class="list-group-item"><strong>Medical History:</strong> {{ profile.medical_history }}</li>
+        </ul>
+
+        <a href="{% url 'profile-edit' %}" class="btn btn-outline-primary mt-3">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}

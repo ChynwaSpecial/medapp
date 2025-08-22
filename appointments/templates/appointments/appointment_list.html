@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Your Appointments</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Status</th>
+                {% if user.role == 'doctor' %}
+                    <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.date }}</td>
+                    <td>{{ appointment.time }}</td>
+                    <td>{{ appointment.doctor.get_full_name }}</td>
+                    <td>{{ appointment.patient.get_full_name }}</td>
+                    <td>{{ appointment.get_status_display }}</td>
+                    {% if user.role == 'doctor' %}
+                    <td>
+                        {% if appointment.status != 'confirmed' %}
+                        <a href="{% url 'appointment-status-update' appointment.id 'confirmed' %}" class="btn btn-sm btn-success">Confirm</a>
+                        {% endif %}
+                        {% if appointment.status != 'cancelled' %}
+                        <a href="{% url 'appointment-status-update' appointment.id 'cancelled' %}" class="btn btn-sm btn-danger">Cancel</a>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <tr><td colspan="6">No appointments found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if user.role == 'patient' %}
+        <a href="{% url 'book-appointment' %}" class="btn btn-primary">Book New Appointment</a>
+    {% endif %}
+</div>
+{% endblock %}

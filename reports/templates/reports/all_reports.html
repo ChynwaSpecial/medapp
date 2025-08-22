@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">All Medical Reports</h4>
+                {% if reports %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ report.patient.get_full_name }}</td>
+                                <td>{{ report.doctor.get_full_name if report.doctor }}</td>
+                                <td>{{ report.title }}</td>
+                                <td><label class="badge badge-outline-success">{{ report.status }}</label></td>
+                                <td>{{ report.created_at|date:"M d, Y" }}</td>
+                                <td>
+                                    {% if report.file %}
+                                    <a href="{% url 'report-download' report.id %}" class="btn btn-sm btn-info">Download</a>
+                                    {% else %}
+                                    <span class="badge badge-secondary">No file</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No reports available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

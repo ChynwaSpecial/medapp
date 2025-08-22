@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <h4 class="card-title">Reports I Wrote</h4>
+                    <a href="{% url 'report-upload' %}" class="btn btn-success btn-sm">+ Upload Report</a>
+                </div>
+                {% if reports %}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ report.patient.get_full_name }}</td>
+                                <td>{{ report.title }}</td>
+                                <td>{{ report.created_at|date:"M d, Y" }}</td>
+                                <td>
+                                    {% if report.file %}
+                                    <a href="{% url 'download-report' report.id %}" class="btn btn-sm btn-info">Download</a>
+                                    {% else %}
+                                    <span class="badge badge-secondary">No file</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No reports available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="page-header">
+    <h3 class="page-title">Welcome, {{ user.get_full_name }}</h3>
+  </div>
+
+  <div class="row">
+
+    {% if user.role == 'doctor' %}
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-primary text-white">
+          <div class="card-body">
+            <h4 class="card-title">Today’s Appointments</h4>
+            <h2>{{ today_appointments }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-success text-white">
+          <div class="card-body">
+            <h4 class="card-title">Total Patients</h4>
+            <h2>{{ total_patients }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-info text-white">
+          <div class="card-body">
+            <h4 class="card-title">Reports Written</h4>
+            <h2>{{ report_count }}</h2>
+          </div>
+        </div>
+      </div>
+
+    {% elif user.role == 'patient' %}
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card bg-gradient-primary text-white">
+          <div class="card-body">
+            <h4 class="card-title">Upcoming Appointments</h4>
+            <h2>{{ upcoming_appointments }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card bg-gradient-success text-white">
+          <div class="card-body">
+            <h4 class="card-title">My Reports</h4>
+            <h2>{{ report_count }}</h2>
+          </div>
+        </div>
+      </div>
+
+    {% elif user.is_superuser %}
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-dark text-white">
+          <div class="card-body">
+            <h4 class="card-title">Total Doctors</h4>
+            <h2>{{ doctor_count }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-secondary text-white">
+          <div class="card-body">
+            <h4 class="card-title">Total Patients</h4>
+            <h2>{{ patient_count }}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-warning text-white">
+          <div class="card-body">
+            <h4 class="card-title">All Appointments</h4>
+            <h2>{{ appointment_count }}</h2>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

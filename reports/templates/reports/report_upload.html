@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Upload Medical Report</h4>
+
+                <form method="post" enctype="multipart/form-data" class="forms-sample">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary mr-2">Upload</button>
+                    <a href="{% url 'doctor-reports' %}" class="btn btn-light">Cancel</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

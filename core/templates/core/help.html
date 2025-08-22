@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Help & Support{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row text-center mb-4">
+        <div class="col">
+            <h2 class="fw-bold text-primary">Help & Support</h2>
+            <p class="text-muted">Find answers to common questions or reach out for more support.</p>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                    How do I book an appointment?
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Log in to your account, navigate to the appointments section, and choose your preferred doctor, date, and time.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                    How can I access my medical reports?
+                </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    After logging in, go to the "Reports" section from your dashboard to download or view your medical reports.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                    How do I contact a doctor?
+                </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Visit the doctors page, select a doctor, and use the messaging or appointment request feature if available.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                    I forgot my password. What should I do?
+                </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Use the "Forgot Password" link on the login page to reset your password via email.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Still Need Help -->
+    <div class="mt-5 text-center">
+        <p class="text-muted">Still have questions?</p>
+        <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+            Contact Support
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Patients{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="page-header">
+    <h3 class="page-title">Patients List</h3>
+  </div>
+
+  <div class="row">
+    {% for patient in patients %}
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ patient.get_full_name }}</h5>
+          <p class="card-text">{{ patient.email }}</p>
+          <p class="text-muted">Username: {{ patient.username }}</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No patients found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

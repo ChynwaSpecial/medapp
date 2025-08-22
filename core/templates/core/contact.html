@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center mb-4">
+            <h2 class="fw-bold text-primary">Get in Touch</h2>
+            <p class="text-muted">We're here to help. Reach out to us with your queries or concerns.</p>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-6">
+            <h5 class="mb-3">Contact Information</h5>
+            <p><i class="bi bi-geo-alt-fill me-2 text-primary"></i>123 Health Street, Lagos, Nigeria</p>
+            <p><i class="bi bi-envelope-fill me-2 text-primary"></i>support@medcare.com</p>
+            <p><i class="bi bi-telephone-fill me-2 text-primary"></i>+234 800 123 4567</p>
+            <p><i class="bi bi-clock-fill me-2 text-primary"></i>Mon - Sat: 8am - 6pm</p>
+
+            <h5 class="mt-4">Follow Us</h5>
+            <a href="#" class="me-2 text-decoration-none"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="me-2 text-decoration-none"><i class="bi bi-twitter-x fs-4"></i></a>
+            <a href="#" class="me-2 text-decoration-none"><i class="bi bi-instagram fs-4"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

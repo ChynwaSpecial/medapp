@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Invoices Issued{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Invoices I Issued</h2>
+    <a href="{% url 'create-invoice' %}" class="btn btn-primary mb-3">Create New Invoice</a>
+    {% if invoices %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Patient</th>
+                    <th>Issued</th>
+                    <th>Due</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.id }}</td>
+                    <td>{{ invoice.patient.user.get_full_name }}</td>
+                    <td>{{ invoice.issued_date }}</td>
+                    <td>{{ invoice.due_date }}</td>
+                    <td>₦{{ invoice.total_amount }}</td>
+                    <td>{{ invoice.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't issued any invoices.</p>
+    {% endif %}
+</div>
+{% endblock %}

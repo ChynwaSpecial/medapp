@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">My Medical Reports</h4>
+                {% if reports %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ report.title }}</td>
+                                <td>{{ report.description|truncatechars:100 }}</td>
+                                <td>{{ report.created_at|date:"M d, Y" }}</td>
+                                <td>
+                                    {% if report.file %}
+                                    <a href="{% url 'download-report' report.id %}" class="btn btn-sm btn-info">Download</a>
+                                    {% else %}
+                                    <span class="badge badge-secondary">No file</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No reports found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
